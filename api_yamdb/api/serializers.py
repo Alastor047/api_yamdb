@@ -59,6 +59,31 @@ class TitlesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Titles
         fields = '__all__'
+        
+#class ReviewsSerializer(serializers.ModelSerializer):
+#    """Сериализатор для модели Review."""
+#
+#    author = serializers.StringRelatedField(
+#        read_only=True
+#    )
+#
+#    class Meta:
+#        model = Reviews
+#        fields = (
+#            'id', 'text', 'author', 'score', 'pub_date')
+#
+#    def validate(self, data):
+#        """Запрещает пользователям оставлять повторные отзывывы."""
+#        if not self.context.get('request').method == 'POST':
+#            return data
+#        author = self.context.get('request').user
+#        title_id = self.context.get('view').kwargs.get('title_id')
+#        title = get_object_or_404(Titles, pk=title_id)
+#        if Reviews.objects.filter(author=author, title=title).exists():
+#            raise serializers.ValidationError(
+#                'Вы уже оставляли отзыв на это произведение'
+#            )
+#        return data
 
 
 class ReviewsSerializer(serializers.ModelSerializer):
